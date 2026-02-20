@@ -1,0 +1,38 @@
+{
+  "name": "localnodeindexer",
+  "version": "1.0.0",
+  "description": "Прослушивает события смарт-контракта, обрабатывает их и сохраняет в БД.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LikeSouvenir/LocalNodeIndexer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/LikeSouvenir/LocalNodeIndexer/issues"
+  },
+  "homepage": "https://github.com/LikeSouvenir/LocalNodeIndexer#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "viem": "^2.46.2",
+    "@hono/node-server": "^1.19.9",
+    "hono": "^4.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  }
+
+}
