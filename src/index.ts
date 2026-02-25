@@ -1,15 +1,12 @@
-import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
+import express from "express"
 
-const app = new Hono()
+const app = express()
+const port = 3000
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
+app.get('/', (req, res) => {
+  res.send('')
 })
 
-serve({
-  fetch: app.fetch,
-  port: 3000
-}, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`)
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
 })
