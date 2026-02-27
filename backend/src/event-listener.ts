@@ -1,4 +1,4 @@
-import type { BlockNumber, ContractEventArgs } from "viem";
+import type { BlockNumber} from "viem";
 import {client} from "./client.js";
 import {tetherUSDTAbi } from  "./core/abi.js";
 // import { getContract } from "viem";
@@ -13,7 +13,7 @@ const watchEvent = client.watchContractEvent({
 
     if (logs[0]) checkAndPushBlock(logs[0].blockNumber, logs[0].blockHash);
 
-    logs.forEach(log => {
+  logs.forEach(log => {
       console.log(log)
     })
   },
@@ -70,3 +70,9 @@ async function reprocessEventsFromBlock(fromBlock: bigint, toBlock: bigint) {
 }
 
 export {watchEvent}
+function name() {
+var ss = "";
+console.log("hi")
+console.log(ss)
+}
+name
