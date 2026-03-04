@@ -73,9 +73,3 @@ async function reprocessEventsFromBlock(fromBlock: bigint, toBlock: bigint) {
 }
 
 export {watchEvent}
-function name() {
-var ss = "";
-console.log("hi")
-console.log(ss)
-}
-name()
