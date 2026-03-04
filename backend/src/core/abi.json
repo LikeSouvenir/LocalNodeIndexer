@@ -1,4 +1,4 @@
-export const tetherUSDTAbi = [
+[
   {
     constant: true,
     inputs: [],
@@ -668,4 +668,4 @@ export const tetherUSDTAbi = [
     name: "Unpause",
     type: "event",
   },
-] as const;
+] 

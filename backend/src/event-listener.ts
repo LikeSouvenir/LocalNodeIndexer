@@ -1,21 +1,24 @@
-import type { BlockNumber} from "viem";
+import type { Address, BlockNumber } from "viem";
+import fs from 'node:fs'
 import {client} from "./client.js";
-import {tetherUSDTAbi } from  "./core/abi.js";
-// import { getContract } from "viem";
+import dotenv from 'dotenv'
 
-const TETHER_USDT = '0xdac17f958d2ee523a2206206994597c13d831ec7' as const;
+dotenv.config()
+
+const abi = JSON.parse(fs.readFileSync(`${process.env.CONTRACT_ABI_PATH}`, 'utf8'))
+const contractAddress = process.env.CONTRACT_ADDRESS as Address
 const numToHash = new Map<bigint, string>();
 
 const watchEvent = client.watchContractEvent({
-  address: TETHER_USDT,
-  abi: tetherUSDTAbi,
+  address: contractAddress,
+  abi: abi,
   onLogs: logs => {
-
-    if (logs[0]) checkAndPushBlock(logs[0].blockNumber, logs[0].blockHash);
-
-  logs.forEach(log => {
-      console.log(log)
-    })
+    try {
+      if (logs[0]) checkAndPushBlock(logs[0].blockNumber as bigint, logs[0].blockHash as string);
+      logs.forEach(console.log)
+    } catch (error) {
+      console.error(error)
+    }
   },
   onError: error => console.error(error)
 })
@@ -52,8 +55,8 @@ async function checkAndPushBlock(blockNumber:bigint, blockHash: string) {
 async function reprocessEventsFromBlock(fromBlock: bigint, toBlock: bigint) {
   try {
     const logs = await client.getContractEvents({
-      address: TETHER_USDT,
-      abi: tetherUSDTAbi,
+      address: contractAddress,
+      abi: abi,
       fromBlock: fromBlock as BlockNumber,
       toBlock: toBlock as BlockNumber,
     });
@@ -75,4 +78,4 @@ var ss = "";
 console.log("hi")
 console.log(ss)
 }
-name
+name()

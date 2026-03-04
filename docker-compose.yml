@@ -1,0 +1,26 @@
+version: '3,8'
+
+services: 
+  postgres:
+    image: postgres:17
+    container_name: node_postrges
+    ports:
+      - "${PGPORT}:5432"
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_password
+    secrets:
+      - pg_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/bd:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    
+secrets:
+  pg_password:
+    file: ${PGPASSWORD_FILE_PATH}
+
+volumes:
+  postgres_data:
+
