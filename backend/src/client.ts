@@ -1,7 +1,7 @@
-import { createPublicClient, webSocket} from "viem";
+import { createPublicClient, webSocket } from "viem";
 import { mainnet } from "viem/chains";
-import { loadEnvFile } from "process";
-loadEnvFile('/.env');
+import dotenv from "dotenv";
+dotenv.config();
 
 const client = createPublicClient({
   batch: {
@@ -10,8 +10,8 @@ const client = createPublicClient({
   chain: mainnet,
   transport: webSocket(process.env.ALCHEMY_WEB_SOCKET_PROVIDER, {
     key: "alchemy",
-    name: "Alchemy WebSocket provider"
+    name: "Alchemy WebSocket provider",
   }),
 });
 
-export {client};
+export { client };
